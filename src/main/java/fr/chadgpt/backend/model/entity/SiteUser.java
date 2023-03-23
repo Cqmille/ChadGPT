@@ -1,4 +1,4 @@
-package fr.chadgpt.chadgpt.model.entity;
+package fr.chadgpt.backend.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

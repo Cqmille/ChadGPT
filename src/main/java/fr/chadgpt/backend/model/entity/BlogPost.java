@@ -1,17 +1,15 @@
-package fr.chadgpt.chadgpt.model.entity;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Data;
-import java.util.List;
-
+package fr.chadgpt.backend.model.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Data
 public class BlogPost {
 
     @Id
@@ -31,7 +29,7 @@ public class BlogPost {
 
     // Use ElementCollection for a simple collection of Strings (imageIds)
     @ElementCollection
-    @CollectionTable(name = "blogpost_image", joinColumns = @JoinColumn(name = "blogpost_id"))
     @Column(name = "image_id")
     private List<String> imageIds;
+
 }

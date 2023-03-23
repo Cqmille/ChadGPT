@@ -1,4 +1,4 @@
-package fr.chadgpt.chadgpt;
+package fr.chadgpt.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
