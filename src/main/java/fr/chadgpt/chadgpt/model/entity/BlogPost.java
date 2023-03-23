@@ -27,7 +27,7 @@ public class BlogPost {
     // Many-to-one relationship with SiteUser, assuming 'SiteUser' is the correct user entity class
     @ManyToOne // Many-to-one relationship (Yes, many-to-one is correct here)
     @JoinColumn(name = "author_id") // Specify the foreign key column name
-    private User author;
+    private SiteUser author;
 
     // Use ElementCollection for a simple collection of Strings (imageIds)
     @ElementCollection
