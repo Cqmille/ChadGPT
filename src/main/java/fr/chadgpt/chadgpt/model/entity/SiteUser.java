@@ -3,6 +3,8 @@ package fr.chadgpt.chadgpt.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,5 +26,11 @@ public class SiteUser {
     @Column(nullable = false, unique = true)
     private String username; // Pseudo for the user
 
-    // Add relationships with other entities (e.g., prompts, comments) here
+    // One-to-many relationship with Prompt
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Prompt> prompts;
+
+    // One-to-many relationship with BlogPost
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BlogPost> blogPosts;
 }
