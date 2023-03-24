@@ -1,6 +1,8 @@
 package fr.chadgpt.backend.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,16 +20,22 @@ public class Prompt {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String description;
 
     @Column(nullable = false)
+    @NotBlank
+    @Size(min = 10)
     private String content;
 
     @Column
-    private String exempleRequest;
+    @Size(max = 255)
+    private String exampleRequest;
 
     @Column
-    private String exempleResponse;
+    @Size(max = 255)
+    private String exampleResponse;
 
     // Many-to-one relationship with SiteUser
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,11 +48,10 @@ public class Prompt {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
-                ", exempleRequest='" + exempleRequest + '\'' +
-                ", exempleResponse='" + exempleResponse + '\'' +
-                ", author=" + author +
+                ", exampleRequest='" + exampleRequest + '\'' +
+                ", exampleResponse='" + exampleResponse + '\'' +
+                ", author=" + (author != null ? author.getUsername() : "null") +
                 '}';
     }
-
 }
 
