@@ -1,5 +1,7 @@
 package fr.chadgpt.backend.configuration;
 
+import fr.chadgpt.backend.security.CustomAuthenticationFailureHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -24,6 +26,9 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
+    @Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails admin = User.withUsername("admin")
@@ -40,6 +45,7 @@ public class SpringSecurityConfiguration {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
+                .failureHandler(customAuthenticationFailureHandler)
                 .permitAll()
                 .and()
                 .logout()
