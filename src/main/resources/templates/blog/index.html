@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Blog Main Page</title>
 </head>
 <body>
+<h1>Blog Main Page</h1>
 
+<div th:each="blogPost : ${blogPostsPage.content}">
+    <h2 th:text="${blogPost.title}"></h2>
+    <p th:text="${#strings.abbreviate(blogPost.content, 100)}"></p>
+</div>
+
+<nav>
+    <ul>
+        <li th:if="${!blogPostsPage.isFirst()}">
+            <a th:href="@{/}?page=1">First</a>
+        </li>
+        <li th:if="${blogPostsPage.hasPrevious()}">
+            <a th:href="@{/}?page=${blogPostsPage.number}">Previous</a>
+        </li>
+        <li th:if="${blogPostsPage.hasNext()}">
+            <a th:href="@{'?page=' + (${blogPostsPage.number + 1})}">Next</a>
+        </li>
+        <li th:if="${!blogPostsPage.isLast()}">
+            <a th:href="@{/}?page=${blogPostsPage.totalPages}">Last</a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>
