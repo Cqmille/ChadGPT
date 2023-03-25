@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BlogPostService {
+public class AdminService {
 
     @Autowired
     private BlogPostRepository blogPostRepository;
@@ -22,11 +22,11 @@ public class BlogPostService {
         return blogPostRepository.findById(id);
     }
 
-    public BlogPost saveBlogPost(BlogPost blogPost) {
-        return blogPostRepository.save(blogPost);
-    }
-
     public void deleteBlogPost(Long id) {
         blogPostRepository.deleteById(id);
+    }
+
+    public void save(BlogPost blogPost) {
+        blogPostRepository.save(blogPost);
     }
 }

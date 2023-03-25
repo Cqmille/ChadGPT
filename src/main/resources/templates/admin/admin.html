@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+
+<div>
+  <a href="/admin/post">Create New Blog Post</a>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="blogPost : ${blogPosts}">
+    <td th:text="${blogPost.title}"></td>
+    <td th:text="${blogPost.author.username}"></td>
+    <td th:text="${#dates.format(blogPost.postDate, 'dd-MM-yyyy')}"></td>
+    <td>
+      <a th:href="@{/admin/post/__${blogPost.id}__}">Edit</a>
+      <a th:href="@{/admin/delete/__${blogPost.id}__}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

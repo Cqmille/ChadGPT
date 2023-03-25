@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -38,6 +39,10 @@ public class BlogPost {
     @Column(name = "image_id")
     private List<String> imageIds;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date")
+    private Date postDate;
+
     @Override
     public String toString() {
         return "BlogPost{" +
@@ -46,6 +51,7 @@ public class BlogPost {
                 ", content='" + content + '\'' +
                 ", author=" + (author != null ? author.getUsername() : "null") +
                 ", imageIds=" + imageIds +
+                ", date=" + postDate +
                 '}';
     }
 }
