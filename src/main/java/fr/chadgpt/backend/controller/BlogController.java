@@ -28,7 +28,7 @@ public class BlogController {
                             @RequestParam("page") Optional<Integer> page) {
 
         int currentPage = page.orElse(1);
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<BlogPost> postPage = blogService.findPaginated(currentPage, pageSize);
 
