@@ -21,10 +21,10 @@
             <a th:href="@{/}?page=${blogPostsPage.number}">Previous</a>
         </li>
         <li th:if="${blogPostsPage.hasNext()}">
-            <a th:href="@{'?page=' + (${blogPostsPage.number + 1})}">Next</a>
+            <a th:href="@{'/?page=' + (blogPostsPage.number + 1)}">Next</a>
         </li>
         <li th:if="${!blogPostsPage.isLast()}">
-            <a th:href="@{/}?page=${blogPostsPage.totalPages}">Last</a>
+            <a th:href="@{'/?page=' + blogPostsPage.totalPages}">Last</a>
         </li>
     </ul>
 </nav>

@@ -18,7 +18,7 @@ public class BlogService {
     private BlogPostRepository blogPostRepository;
 
     public Page<BlogPost> findPaginated(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(Sort.Direction.DESC, "postDate"));
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(Sort.Direction.DESC, "id"));
         return blogPostRepository.findAll(pageable);
     }
 

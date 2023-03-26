@@ -37,7 +37,7 @@ public class ChadGptApplication {
 			userService.save(camille);
 
 			// Create multiple blog posts associated with the user
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 24; i++) {
 				BlogPost blogPost = new BlogPost();
 				blogPost.setTitle("Title " + i);
 				blogPost.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit...");
