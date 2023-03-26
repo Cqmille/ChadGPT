@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog Main Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <h1>Blog Main Page</h1>
 
-<div th:each="blogPost : ${blogPostsPage.content}">
-    <h2 th:text="${blogPost.title}"></h2>
-    <p th:text="${#strings.abbreviate(blogPost.content, 100)}"></p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content Preview</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blogPost, iStat : ${postPage.content}">
+        <td th:text="${blogPost.title}" />
+        <td th:text="${#strings.abbreviate(blogPost.content, 100)}" />
+    </tr>
+    </tbody>
+</table>
+
+<div th:if="${postPage.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/(page=${pageNumber})}"
+       th:text=${pageNumber}
+       th:class="${pageNumber == postPage.number + 1} ? active"></a>
 </div>
 
-<nav>
-    <ul>
-        <li th:if="${!blogPostsPage.isFirst()}">
-            <a th:href="@{/}?page=1">First</a>
-        </li>
-        <li th:if="${blogPostsPage.hasPrevious()}">
-            <a th:href="@{/}?page=${blogPostsPage.number}">Previous</a>
-        </li>
-        <li th:if="${blogPostsPage.hasNext()}">
-            <a th:href="@{'/?page=' + (blogPostsPage.number + 1)}">Next</a>
-        </li>
-        <li th:if="${!blogPostsPage.isLast()}">
-            <a th:href="@{'/?page=' + blogPostsPage.totalPages}">Last</a>
-        </li>
-    </ul>
-</nav>
 </body>
 </html>
